@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-3">
+        <h2>Welcome to Perfect Palate !!</h2>
+        <div class="alert alert-danger" *ngIf="error">{{ errorMessage }}</div>
+        <div class="alert alert-success" *ngIf="registered">{{ authForm.value.email }} registered successfully !!!</div>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" 
+                    id="email" 
+                    type="text"
+                    name="email"
+                    ngModel
+                    required
+                    email
+                >
+                <div *ngIf="submitted && authForm.form.controls.email.errors" class="invalid-feedback">
+                    <div *ngIf="authForm.form.controls.email.errors.required">Email is required</div>
+                    <div *ngIf="authForm.form.controls.email.errors.email">Invalid Email</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                    <input type="passowrd" 
+                        class="form-control" 
+                        id="password"
+                        [type]="isTextFieldType ? 'text' : 'password'"
+                        name="password"
+                        ngModel
+                        required
+                        password
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@-_!3$%&*^]{8,}$"
+                        #passwordInput
+                    >
+                    <input type="checkbox" (click)="togglePasswordFieldType()"><small> Show Password</small>
+                <div *ngIf="submitted && authForm.form.controls.password.errors" class="invalid-feedback">
+                    <div *ngIf="authForm.form.controls.password.errors.required">Password is required</div>
+                    <div *ngIf="authForm.form.controls.password.errors.pattern">Invalid Password</div>
+                </div>
+                <div *ngIf="submitted && 
+                    authForm.form.controls.password.errors &&
+                    authForm.form.controls.password.errors.pattern">
+                    <small class="text-muted">
+                        Password must contains <br/>
+                        * Minimum eight characters, <br/>
+                        * at least one uppercase letter, <br/>
+                        * one lowercase letter and <br/>
+                        * one number
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    {{ isLoginMode ? 'Login' : 'Sign Up' }}
+                </button> |
+                <a style="cursor: pointer;" routerLink="/login" (click)="switchMode()">
+                    Redirect to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+    margin: 0 10px 10px ;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.btn{
+  margin-right:10px;
+}

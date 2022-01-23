@@ -1,0 +1,16 @@
+<a
+  style="cursor: pointer"
+  [routerLink] = "[index + 1]"
+  class="list-group-item list-group-item-action style" >
+    <div class="row">
+      <div class="col-sm-7">
+        <h5 class="mb-1">{{ recipe.name }}</h5>
+        <!--<span class="badge badge-primary badge-pill">{{ recipe.type }}</span>-->
+        <small>{{ recipe.description }}</small>
+      </div>
+      <div class="col-sm-5">
+        <!--<small class="pull-right">3 days ago</small>-->
+        <p class="mb-1 pull-right"><img src="{{ recipe.imagepath }}" alt="{{ recipe.name }}" width="100" height="100"></p>
+      </div>
+    </div>
+</a>
